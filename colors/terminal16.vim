@@ -155,10 +155,10 @@ hi Typedef         ctermfg=none    ctermbg=none    cterm=none
 " --------------------------------
 " Diff
 " --------------------------------
-hi DiffAdd         ctermfg=none    ctermbg=none    cterm=none
+hi DiffAdd         ctermfg=green    ctermbg=none    cterm=none
 hi DiffChange      ctermfg=none    ctermbg=none    cterm=none
-hi DiffDelete      ctermfg=none    ctermbg=none    cterm=none
-hi DiffText        ctermfg=none    ctermbg=none    cterm=none
+hi DiffDelete      ctermfg=red    ctermbg=none    cterm=none
+hi DiffText        ctermfg=none    ctermbg=black    cterm=none
 
 " --------------------------------
 " Completion menu
