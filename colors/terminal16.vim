@@ -53,24 +53,24 @@ hi Normal         ctermfg=none    ctermbg=none   cterm=none
 hi Cursor         ctermfg=none    ctermbg=none   cterm=none
 hi CursorLine     ctermfg=none    ctermbg=none   cterm=none
 hi LineNr         ctermfg=black   ctermbg=none   cterm=none
-hi CursorLineNR   ctermfg=darkgrey    ctermbg=none   cterm=none
+hi CursorLineNR   ctermfg=none    ctermbg=none   cterm=none
 
 " -----------------
 " - Number column -
 " -----------------
 hi CursorColumn    ctermfg=none    ctermbg=none    cterm=none
-hi FoldColumn      ctermfg=none    ctermbg=none    cterm=none
+hi FoldColumn      ctermfg=black    ctermbg=none    cterm=none
 hi SignColumn      ctermfg=none    ctermbg=none    cterm=none
-hi Folded          ctermfg=none    ctermbg=none    cterm=none
+hi Folded          ctermfg=none    ctermbg=black    cterm=none
 
 " -------------------------
 " - Window/Tab delimiters - 
 " -------------------------
-hi VertSplit       ctermfg=none    ctermbg=none    cterm=none
+hi VertSplit       ctermfg=black    ctermbg=none    cterm=none
 hi ColorColumn     ctermfg=none    ctermbg=none    cterm=none
-hi TabLine         ctermfg=none    ctermbg=none    cterm=none
-hi TabLineFill     ctermfg=none    ctermbg=none    cterm=none
-hi TabLineSel      ctermfg=none    ctermbg=none    cterm=none
+hi TabLine         ctermfg=darkgrey    ctermbg=black    cterm=none
+hi TabLineFill     ctermfg=darkgrey    ctermbg=black    cterm=none
+hi TabLineSel      ctermfg=darkgrey    ctermbg=none    cterm=none
 
 " -------------------------------
 " - File Navigation / Searching -
@@ -82,13 +82,13 @@ hi IncSearch       ctermfg=none    ctermbg=none    cterm=underline
 " -----------------
 " - Prompt/Status -
 " -----------------
-hi StatusLine      ctermfg=none    ctermbg=none    cterm=none
-hi StatusLineNC    ctermfg=none    ctermbg=none    cterm=none
-hi WildMenu        ctermfg=none    ctermbg=none    cterm=none
+hi StatusLine      ctermfg=none    ctermbg=black    cterm=none
+hi StatusLineNC    ctermfg=darkgrey    ctermbg=black    cterm=none
+hi WildMenu        ctermfg=black    ctermbg=white    cterm=none
 hi Question        ctermfg=none    ctermbg=none    cterm=none
 hi Title           ctermfg=none    ctermbg=none    cterm=none
-hi ModeMsg         ctermfg=none    ctermbg=none    cterm=none
-hi MoreMsg         ctermfg=none    ctermbg=none    cterm=none
+hi ModeMsg         ctermfg=black    ctermbg=none    cterm=none
+hi MoreMsg         ctermfg=blue    ctermbg=none    cterm=none
 
 " --------------
 " - Visual aid -
