@@ -4,174 +4,323 @@ set background=dark
 
 highlight clear
 
-if exists("syntax_on")
+if exists('syntax_on')
   syntax reset
 endif
 
-let g:colors_name="terminal16"
-
+let g:colors_name='terminal16'
 
 " TESTING
 
-hi Black ctermfg=white ctermbg=black cterm=none
-call matchadd("Black", "black")
+function! InsertMissingGroups()
+  while search('hl-', 'W')
+    normal f-lye
+    if !search(@", '')
+      normal 'e
+      normal ohi " ctermbg=none ctermfg=none cterm=none
+    endif
+    normal 
+  endwhile
+endfunction
 
-hi DarkGrey ctermfg=white ctermbg=darkgrey cterm=none
-call matchadd("DarkGrey", "darkgrey")
+function! DocumentGroup()
+  " call search('^hi [A-Z]\w\+', 'W') " search for the next group
+  normal 0wye " copy group name
+  let group_name=@"
+  normal  " switch to other pane
 
-hi Blue ctermfg=black ctermbg=blue cterm=none
-call matchadd("Blue", "blue")
+  " go to help article
+  execute 'help hl-'.group_name
 
-hi Green ctermfg=black ctermbg=green cterm=none
-call matchadd("Green", "green")
+  normal j0v/hl-k$y " copy documentation
+  normal  " switch back
+  normal O" " " paste documentation as comment above
 
-hi Cyan ctermfg=black ctermbg=cyan cterm=none
-call matchadd("Cyan", "cyan")
+  " cleanup:
 
-hi Red ctermfg=black ctermbg=red cterm=none
-call matchadd("Red", "red")
+  " delete group name
+  call search(group_name, 'b')
+  normal dw
 
-hi Magenta ctermfg=black ctermbg=magenta cterm=none
-call matchadd("Magenta", "magenta")
+  retab
 
-hi Yellow ctermfg=black ctermbg=yellow cterm=none
-call matchadd("Yellow", "yellow")
+  " delete trailing newlines
+  normal vap:g/^"$/d
+  " delete doubled space
+  normal gv:s/\s\{2,}/ /eg
+endfunction
 
-hi White ctermfg=black ctermbg=white cterm=none
-call matchadd("White", "white")
+function! ClearColorHighlighting()
+  " hi clear Black
+  " hi clear DarkGrey
+  " hi clear Blue
+  " hi clear Green
+  " hi clear Cyan
+  " hi clear Red
+  " hi clear Magenta
+  " hi clear Yellow
+  " hi clear White
+  call clearmatches()
+endfunction
 
-" reload colorscheme every time it's edited
+function! SetupColorHighlighting() 
+  " hi Black ctermfg=white ctermbg=black cterm=none
+  " hi DarkGrey ctermfg=white ctermbg=darkgrey cterm=none
+  " hi Blue ctermfg=black ctermbg=blue cterm=none
+  " hi Green ctermfg=black ctermbg=green cterm=none
+  " hi Cyan ctermfg=black ctermbg=cyan cterm=none
+  " hi Red ctermfg=black ctermbg=red cterm=none
+  " hi Magenta ctermfg=black ctermbg=magenta cterm=none
+  " hi Yellow ctermfg=black ctermbg=yellow cterm=none
+  " hi White ctermfg=black ctermbg=white cterm=none
+
+  " call matchadd('Black', 'black')
+  " call matchadd('DarkGrey', 'darkgrey')
+  " call matchadd('Blue', 'blue')
+  " call matchadd('Green', 'green')
+  " call matchadd('Cyan', 'cyan')
+  " call matchadd('Red', 'red')
+  " call matchadd('Magenta', 'magenta')
+  " call matchadd('Yellow', 'yellow')
+  " call matchadd('White', 'white') 
+  call clearmatches()
+  mark ` " save cursor position
+  normal gg
+  while search('hi [A-Z]\w\+', 'W')
+    normal w"hye " copy group name to register 'h'
+    call matchadd(@h, '^" ' . @h) " add match
+  endwhile
+  normal `` " return to cursor
+endfunction
+
 augroup terminal16 
   autocmd!
+
+  " reload colorscheme every time it's edited
   autocmd BufWritePost <buffer> source %
+
+  " highlight colors
+  " autocmd BufWinLeave <buffer> call ClearColorHighlighting()
+  " autocmd BufWinEnter,BufWritePost <buffer> call SetupColorHighlighting()
 augroup END
 
 
 " EDITOR SETTINGS
 
-hi Normal         ctermfg=none    ctermbg=none   cterm=none
-hi Cursor         ctermfg=none    ctermbg=none   cterm=none
-hi CursorLine     ctermfg=none    ctermbg=none   cterm=none
-hi LineNr         ctermfg=black   ctermbg=none   cterm=none
-hi CursorLineNR   ctermfg=none    ctermbg=none   cterm=none
+" normal text
+hi Normal ctermfg=none ctermbg=none cterm=none
 
-" -----------------
-" - Number column -
-" -----------------
-hi CursorColumn    ctermfg=none    ctermbg=none    cterm=none
-hi FoldColumn      ctermfg=black    ctermbg=none    cterm=none
-hi SignColumn      ctermfg=none    ctermbg=none    cterm=none
-hi Folded          ctermfg=none    ctermbg=black    cterm=none
+" the character under cursor
+hi Cursor ctermfg=none ctermbg=none cterm=none
 
-" -------------------------
-" - Window/Tab delimiters - 
-" -------------------------
-hi VertSplit       ctermfg=black    ctermbg=none    cterm=none
-hi ColorColumn     ctermfg=none    ctermbg=none    cterm=none
-hi TabLine         ctermfg=darkgrey    ctermbg=black    cterm=none
-hi TabLineFill     ctermfg=darkgrey    ctermbg=black    cterm=none
-hi TabLineSel      ctermfg=darkgrey    ctermbg=none    cterm=none
+" the screen line that the cursor is in when 'cursorline' is set
+hi CursorLine ctermfg=none ctermbg=none cterm=none
 
-" -------------------------------
-" - File Navigation / Searching -
-" -------------------------------
-hi Directory       ctermfg=none    ctermbg=none    cterm=none
-hi Search          ctermfg=none    ctermbg=none    cterm=underline
-hi IncSearch       ctermfg=none    ctermbg=none    cterm=underline
+" Line number for ":number" and ":#" commands, and when 'number' or
+" 'relativenumber' option is set.
+hi LineNr ctermfg=black ctermbg=none cterm=none
 
-" -----------------
-" - Prompt/Status -
-" -----------------
-hi StatusLine      ctermfg=none    ctermbg=black    cterm=none
-hi StatusLineNC    ctermfg=darkgrey    ctermbg=black    cterm=none
-hi WildMenu        ctermfg=black    ctermbg=white    cterm=none
-hi Question        ctermfg=none    ctermbg=none    cterm=none
-hi Title           ctermfg=none    ctermbg=none    cterm=none
-hi ModeMsg         ctermfg=black    ctermbg=none    cterm=none
-hi MoreMsg         ctermfg=blue    ctermbg=none    cterm=none
+" Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+hi CursorLineNr ctermfg=none ctermbg=none cterm=none
 
-" --------------
-" - Visual aid -
-" --------------
-hi MatchParen      ctermfg=none    ctermbg=none    cterm=none
-hi Visual          ctermfg=none    ctermbg=black    cterm=none
-hi NonText         ctermfg=black    ctermbg=none    cterm=none
+" CursorColumn the screen column that the cursor is in when 'cursorcolumn' is
+" set
+hi CursorColumn ctermfg=none ctermbg=none cterm=none
 
-hi Todo            ctermfg=none    ctermbg=none    cterm=none
-hi Underlined      ctermfg=none    ctermbg=none    cterm=none
-hi Error           ctermfg=none    ctermbg=none    cterm=none
-hi ErrorMsg        ctermfg=none    ctermbg=none    cterm=none
-hi WarningMsg      ctermfg=none    ctermbg=none    cterm=none
-hi Ignore          ctermfg=none    ctermbg=none    cterm=none
-hi SpecialKey      ctermfg=none    ctermbg=none    cterm=none
+" 'foldcolumn'
+hi FoldColumn ctermfg=black ctermbg=none cterm=none
 
-" --------------------------------
-" Variable types
-" --------------------------------
-hi Constant        ctermfg=none    ctermbg=none    cterm=none
-hi String          ctermfg=none    ctermbg=none    cterm=none
-hi StringDelimiter ctermfg=none    ctermbg=none    cterm=none
-hi Character       ctermfg=none    ctermbg=none    cterm=none
-hi Number          ctermfg=none    ctermbg=none    cterm=none
-hi Boolean         ctermfg=none    ctermbg=none    cterm=none
-hi Float           ctermfg=none    ctermbg=none    cterm=none
+" column where signs are displayed
+hi SignColumn ctermfg=none ctermbg=none cterm=none
 
-hi Identifier      ctermfg=none    ctermbg=none    cterm=none
-hi Function        ctermfg=none    ctermbg=none    cterm=none
+" line used for closed folds
+hi Folded ctermfg=none ctermbg=black cterm=none
 
-" --------------------------------
-" Language constructs
-" --------------------------------
-hi Statement       ctermfg=none    ctermbg=none    cterm=none
-hi Conditional     ctermfg=none    ctermbg=none    cterm=none
-hi Repeat          ctermfg=none    ctermbg=none    cterm=none
-hi Label           ctermfg=none    ctermbg=none    cterm=none
-hi Operator        ctermfg=none    ctermbg=none    cterm=none
-hi Keyword         ctermfg=none    ctermbg=none    cterm=none
-hi Exception       ctermfg=none    ctermbg=none    cterm=none
-hi Comment         ctermfg=none    ctermbg=none    cterm=none
+" the column separating vertically split windows
+hi VertSplit ctermfg=black ctermbg=none cterm=none
 
-hi Special         ctermfg=none    ctermbg=none    cterm=none
-hi SpecialChar     ctermfg=none    ctermbg=none    cterm=none
-hi Tag             ctermfg=none    ctermbg=none    cterm=none
-hi Delimiter       ctermfg=none    ctermbg=none    cterm=none
-hi SpecialComment  ctermfg=none    ctermbg=none    cterm=none
-hi Debug           ctermfg=none    ctermbg=none    cterm=none
+" used for the columns set with 'colorcolumn'
+hi ColorColumn ctermfg=none ctermbg=none cterm=none
 
-" ----------
-" - C like -
-" ----------
-hi PreProc         ctermfg=none    ctermbg=none    cterm=none
-hi Include         ctermfg=none    ctermbg=none    cterm=none
-hi Define          ctermfg=none    ctermbg=none    cterm=none
-hi Macro           ctermfg=none    ctermbg=none    cterm=none
-hi PreCondit       ctermfg=none    ctermbg=none    cterm=none
+" tab pages line, not active tab page label
+hi TabLine ctermfg=darkgrey ctermbg=black cterm=none
 
-hi Type            ctermfg=none    ctermbg=none    cterm=none
-hi StorageClass    ctermfg=none    ctermbg=none    cterm=none
-hi Structure       ctermfg=none    ctermbg=none    cterm=none
-hi Typedef         ctermfg=none    ctermbg=none    cterm=none
+" tab pages line, where there are no labels
+hi TabLineFill ctermfg=darkgrey ctermbg=black cterm=none
 
-" --------------------------------
-" Diff
-" --------------------------------
-hi DiffAdd         ctermfg=green    ctermbg=none    cterm=none
-hi DiffChange      ctermfg=none    ctermbg=none    cterm=none
-hi DiffDelete      ctermfg=red    ctermbg=none    cterm=none
-hi DiffText        ctermfg=none    ctermbg=black    cterm=none
+" tab pages line, active tab page label
+hi TabLineSel ctermfg=darkgrey ctermbg=none cterm=none
 
-" --------------------------------
-" Completion menu
-" --------------------------------
-hi Pmenu           ctermfg=none    ctermbg=none    cterm=none
-hi PmenuSel        ctermfg=none    ctermbg=none    cterm=none
-hi PmenuSbar       ctermfg=none    ctermbg=none    cterm=none
-hi PmenuThumb      ctermfg=none    ctermbg=none    cterm=none
+" directory names (and other special names in listings)
+hi Directory ctermfg=none ctermbg=none cterm=none
 
-" --------------------------------
-" Spelling
-" --------------------------------
-hi SpellBad        ctermfg=none    ctermbg=none    cterm=none
-hi SpellCap        ctermfg=none    ctermbg=none    cterm=none
-hi SpellLocal      ctermfg=none    ctermbg=none    cterm=none
-hi SpellRare       ctermfg=none    ctermbg=none    cterm=none
+" Last search pattern highlighting (see 'hlsearch').  Also used for similar
+" items that need to stand out.
+hi Search ctermfg=none ctermbg=none cterm=underline
+
+" 'incsearch' highlighting; also used for the text replaced with ":s///c"
+hi IncSearch ctermfg=none ctermbg=none cterm=underline
+
+" status line of current window
+hi StatusLine ctermfg=none ctermbg=black cterm=none
+
+" status lines of not-current windows
+" Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line
+" of the current window.
+hi StatusLineNC ctermfg=darkgrey ctermbg=black cterm=none
+
+" current match in 'wildmenu' completion
+hi WildMenu ctermfg=black ctermbg=white cterm=none
+
+" hit-enter prompt and yes/no questions
+hi Question ctermfg=none ctermbg=none cterm=none
+
+" titles for output from ":set all", ":autocmd" etc.
+hi Title ctermfg=none ctermbg=none cterm=none
+
+" 'showmode' message (e.g., "-- INSERT --")
+hi ModeMsg ctermfg=black ctermbg=none cterm=none
+
+" more-prompt
+hi MoreMsg ctermfg=blue ctermbg=none cterm=none
+
+" The character under the cursor or just before it, if it is a paired bracket,
+" and its match.
+hi MatchParen ctermfg=none ctermbg=none cterm=none
+
+" Visual mode selection
+hi Visual ctermfg=none ctermbg=black cterm=none
+
+" '@' at the end of the window, characters from 'showbreak' and other characters
+" that do not really exist in the text (e.g., ">" displayed when a double-wide
+" character doesn't 
+hi NonText ctermfg=black ctermbg=none cterm=none
+
+" error messages on the command line
+hi ErrorMsg ctermfg=black ctermbg=red cterm=none
+
+" warning messages
+hi WarningMsg ctermfg=black ctermbg=yellow cterm=none
+
+" Unprintable characters: text displayed differently from what
+hi SpecialKey ctermfg=cyan ctermbg=none cterm=none
+
+" diff mode: Added line
+hi DiffAdd ctermfg=green ctermbg=none cterm=none
+
+" diff mode: Changed line
+hi DiffChange ctermfg=none ctermbg=none cterm=none
+
+" diff mode: Deleted line
+hi DiffDelete ctermfg=red ctermbg=none cterm=none
+
+" diff mode: Changed text within a changed line
+hi DiffText ctermfg=none ctermbg=black cterm=none
+
+" Popup menu: normal item.
+hi Pmenu ctermfg=none ctermbg=none cterm=none
+
+" Popup menu: selected item.
+hi PmenuSel ctermfg=none ctermbg=none cterm=none
+
+" Popup menu: scrollbar.
+hi PmenuSbar ctermfg=none ctermbg=none cterm=none
+
+" Popup menu: Thumb of the scrollbar.
+hi PmenuThumb ctermfg=none ctermbg=none cterm=none
+
+" Word that is not recognized by the spellchecker.
+" Combined with the highlighting used otherwise.
+hi SpellBad ctermfg=none ctermbg=none cterm=none
+
+" Word that should start with a capital.
+" Combined with the highlighting used otherwise.
+hi SpellCap ctermfg=none ctermbg=none cterm=none
+
+" Word that is recognized by the spellchecker as one that is
+" used in another region.
+" Combined with the highlighting used otherwise.
+hi SpellLocal ctermfg=none ctermbg=none cterm=none
+
+" Word that is recognized by the spellchecker as one that is
+" hardly ever used.
+" Combined with the highlighting used otherwise.
+hi SpellRare ctermfg=none ctermbg=none cterm=none
+
+" "nbsp", "space", "tab" and "trail" in 'listchars'
+hi Whitespace ctermbg=none ctermfg=none cterm=none
+
+" Current quickfix item in the quickfix window. Combined with 
+" hl-CursorLine when the cursor is there.
+hi QuickFixLine ctermbg=none ctermfg=none cterm=none
+
+" :substitute replacement text highlighting
+hi Substitute ctermbg=none ctermfg=none cterm=none
+
+" cursor in an unfocused terminal
+hi TermCursorNC ctermbg=none ctermfg=none cterm=none
+
+" cursor in a focused terminal
+hi TermCursor ctermbg=none ctermfg=none cterm=none
+
+" filler lines (~) after the end of the buffer.
+hi EndOfBuffer ctermbg=none ctermfg=none cterm=none
+
+" CursorIM like Cursor, but used when in IME mode 
+hi CursorIM ctermbg=none ctermfg=none cterm=none
+
+" placeholder characters substituted for concealed
+" text (see 'conceallevel')
+hi Conceal ctermbg=none ctermfg=none cterm=none
+
+
+
+hi StringDelimiter ctermfg=none ctermbg=none cterm=none
+
+" CODE
+hi Comment ctermfg=darkgrey ctermbg=none cterm=none
+
+hi Constant ctermfg=cyan ctermbg=none cterm=none
+hi String ctermfg=green ctermbg=none cterm=none
+hi Character ctermfg=cyan ctermbg=none cterm=none
+hi Number ctermfg=cyan ctermbg=none cterm=none
+hi Boolean ctermfg=cyan ctermbg=none cterm=none
+hi Float ctermfg=cyan ctermbg=none cterm=none
+
+hi Identifier ctermfg=green ctermbg=none cterm=none
+hi Function ctermfg=red ctermbg=none cterm=none
+
+hi Statement ctermfg=blue ctermbg=none cterm=none
+hi Conditional ctermfg=blue ctermbg=none cterm=none
+hi Repeat ctermfg=blue ctermbg=none cterm=none
+hi Label ctermfg=blue ctermbg=none cterm=none
+hi Operator ctermfg=blue ctermbg=none cterm=none
+hi Keyword ctermfg=yellow ctermbg=none cterm=none
+hi Exception ctermfg=blue ctermbg=none cterm=none
+
+hi PreProc ctermfg=red ctermbg=none cterm=none
+hi Include ctermfg=red ctermbg=none cterm=none
+hi Define ctermfg=red ctermbg=none cterm=none
+hi Macro ctermfg=red ctermbg=none cterm=none
+hi PreCondit ctermfg=red ctermbg=none cterm=none
+
+hi Type ctermfg=yellow ctermbg=none cterm=none
+hi StorageClass ctermfg=yellow ctermbg=none cterm=none
+hi Structure ctermfg=yellow ctermbg=none cterm=none
+hi Typedef ctermfg=yellow ctermbg=none cterm=none
+
+hi Special ctermfg=yellow ctermbg=none cterm=none
+hi SpecialChar ctermfg=yellow ctermbg=none cterm=none
+hi Tag ctermfg=yellow ctermbg=none cterm=underline
+hi Delimiter ctermfg=yellow ctermbg=none cterm=none
+hi SpecialComment ctermfg=yellow ctermbg=none cterm=none
+hi Debug ctermfg=yellow ctermbg=none cterm=none
+
+hi Underlined ctermfg=blue ctermbg=none cterm=underline
+
+hi Ignore ctermfg=black ctermbg=none cterm=none
+
+hi Error ctermfg=red ctermbg=none cterm=none
+
+hi Todo ctermfg=black ctermbg=yellow cterm=none
+
