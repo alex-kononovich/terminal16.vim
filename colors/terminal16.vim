@@ -50,6 +50,10 @@ function! DocumentGroup()
   normal gv:s/\s\{2,}/ /eg
 endfunction
 
+function! DocumentCodeGroup()
+  normal "cyewY/hi cO" "j0w
+endfunction
+
 function! ClearColorHighlighting()
   " hi clear Black
   " hi clear DarkGrey
@@ -274,53 +278,113 @@ hi CursorIM ctermbg=none ctermfg=none cterm=none
 hi Conceal ctermbg=none ctermfg=none cterm=none
 
 
-
 hi StringDelimiter ctermfg=none ctermbg=none cterm=none
 
 " CODE
+
+" any comment
 hi Comment ctermfg=darkgrey ctermbg=none cterm=none
 
+
+" any constant
 hi Constant ctermfg=cyan ctermbg=none cterm=none
+
+" a string constant: "this is a string"
 hi String ctermfg=green ctermbg=none cterm=none
+
+" a character constant: 'c', '\n'
 hi Character ctermfg=cyan ctermbg=none cterm=none
+
+" a number constant: 234, 0xff
 hi Number ctermfg=cyan ctermbg=none cterm=none
+
+" a boolean constant: TRUE, false
 hi Boolean ctermfg=cyan ctermbg=none cterm=none
+
+" a floating point constant: 2.3e10
 hi Float ctermfg=cyan ctermbg=none cterm=none
 
+" any variable name
 hi Identifier ctermfg=green ctermbg=none cterm=none
+
+" function name (also: methods for classes)
 hi Function ctermfg=red ctermbg=none cterm=none
 
+" any statement
 hi Statement ctermfg=blue ctermbg=none cterm=none
+
+" if, then, else, endif, switch, etc.
 hi Conditional ctermfg=blue ctermbg=none cterm=none
+
+" for, do, while, etc.
 hi Repeat ctermfg=blue ctermbg=none cterm=none
+
+" case, default, etc.
 hi Label ctermfg=blue ctermbg=none cterm=none
+
+" "sizeof", "+", "*", etc.
 hi Operator ctermfg=blue ctermbg=none cterm=none
+
+" any other keyword
 hi Keyword ctermfg=yellow ctermbg=none cterm=none
+
+" try, catch, throw
 hi Exception ctermfg=blue ctermbg=none cterm=none
 
+" generic Preprocessor
 hi PreProc ctermfg=red ctermbg=none cterm=none
+
+" preprocessor #include
 hi Include ctermfg=red ctermbg=none cterm=none
+
+" preprocessor #define
 hi Define ctermfg=red ctermbg=none cterm=none
+
+" same as Define
 hi Macro ctermfg=red ctermbg=none cterm=none
+
+" preprocessor #if, #else, #endif, etc.
 hi PreCondit ctermfg=red ctermbg=none cterm=none
 
+" int, long, char, etc.
 hi Type ctermfg=yellow ctermbg=none cterm=none
+
+" static, register, volatile, etc.
 hi StorageClass ctermfg=yellow ctermbg=none cterm=none
+
+" struct, union, enum, etc.
 hi Structure ctermfg=yellow ctermbg=none cterm=none
+
+" A typedef
 hi Typedef ctermfg=yellow ctermbg=none cterm=none
 
+" any special symbol
 hi Special ctermfg=yellow ctermbg=none cterm=none
-hi SpecialChar ctermfg=yellow ctermbg=none cterm=none
-hi Tag ctermfg=yellow ctermbg=none cterm=underline
-hi Delimiter ctermfg=yellow ctermbg=none cterm=none
-hi SpecialComment ctermfg=yellow ctermbg=none cterm=none
-hi Debug ctermfg=yellow ctermbg=none cterm=none
 
+" special character in a constant
+hi SpecialChar ctermfg=yellow ctermbg=none cterm=none
+
+" you can use CTRL-] on this
+hi Tag ctermfg=yellow ctermbg=none cterm=underline
+
+" character that needs attention
+hi Delimiter ctermfg=yellow ctermbg=none cterm=none
+
+" special things inside a comment
+hi SpecialComment ctermfg=yellow ctermbg=none cterm=none
+
+" debugging statements
+hi Debug ctermfg=magenta ctermbg=none cterm=none
+
+" text that stands out, HTML links
 hi Underlined ctermfg=blue ctermbg=none cterm=underline
 
+" left blank, hidden  |hl-Ignore|
 hi Ignore ctermfg=black ctermbg=none cterm=none
 
+" any erroneous construct
 hi Error ctermfg=red ctermbg=none cterm=none
 
+" anything that needs extra attention; mostly the
 hi Todo ctermfg=black ctermbg=yellow cterm=none
 
