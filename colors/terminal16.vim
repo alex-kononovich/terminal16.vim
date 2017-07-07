@@ -211,12 +211,14 @@ hi SpecialKey ctermfg=cyan ctermbg=none cterm=none
 
 " diff mode: Added line
 hi DiffAdd ctermfg=green ctermbg=none cterm=none
+hi! link diffAdded DiffAdd
 
 " diff mode: Changed line
 hi DiffChange ctermfg=none ctermbg=none cterm=none
 
 " diff mode: Deleted line
 hi DiffDelete ctermfg=red ctermbg=none cterm=none
+hi! link diffRemoved DiffDelete
 
 " diff mode: Changed text within a changed line
 hi DiffText ctermfg=none ctermbg=black cterm=none
