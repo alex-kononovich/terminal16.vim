@@ -138,7 +138,7 @@ hi FoldColumn ctermfg=black ctermbg=none cterm=none
 hi SignColumn ctermfg=none ctermbg=none cterm=none
 
 " line used for closed folds
-hi Folded ctermfg=none ctermbg=black cterm=none
+hi Folded ctermfg=darkgrey ctermbg=none cterm=none
 
 " the column separating vertically split windows
 hi VertSplit ctermfg=black ctermbg=none cterm=none
