@@ -101,7 +101,7 @@ augroup terminal16
   autocmd!
 
   " reload colorscheme every time it's edited
-  autocmd BufWritePost <buffer> source %
+  autocmd BufWritePost colors/terminal16.vim source %
 
   " highlight colors
   " autocmd BufWinLeave <buffer> call ClearColorHighlighting()
