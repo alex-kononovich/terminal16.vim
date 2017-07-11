@@ -270,7 +270,7 @@ hi TermCursorNC ctermbg=none ctermfg=none cterm=none
 hi TermCursor ctermbg=none ctermfg=none cterm=none
 
 " filler lines (~) after the end of the buffer.
-hi EndOfBuffer ctermbg=none ctermfg=none cterm=none
+hi! link EndOfBuffer NonText
 
 " CursorIM like Cursor, but used when in IME mode 
 hi CursorIM ctermbg=none ctermfg=none cterm=none
