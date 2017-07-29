@@ -147,7 +147,7 @@ hi VertSplit ctermfg=black ctermbg=none cterm=none
 hi ColorColumn ctermfg=none ctermbg=none cterm=none
 
 " tab pages line, not active tab page label
-hi TabLine ctermfg=darkgrey ctermbg=black cterm=none
+hi TabLine ctermfg=white ctermbg=black cterm=none
 
 " tab pages line, where there are no labels
 hi TabLineFill ctermfg=darkgrey ctermbg=black cterm=none
