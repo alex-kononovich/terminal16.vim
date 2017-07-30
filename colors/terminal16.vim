@@ -174,7 +174,7 @@ hi StatusLine ctermfg=none ctermbg=black cterm=none
 hi StatusLineNC ctermfg=darkgrey ctermbg=black cterm=none
 
 " current match in 'wildmenu' completion
-hi WildMenu ctermfg=black ctermbg=white cterm=none
+hi WildMenu ctermfg=black ctermbg=yellow cterm=none
 
 " hit-enter prompt and yes/no questions
 hi Question ctermfg=none ctermbg=none cterm=none
@@ -227,7 +227,7 @@ hi DiffText ctermfg=none ctermbg=black cterm=none
 hi Pmenu ctermfg=none ctermbg=black cterm=none
 
 " Popup menu: selected item.
-hi PmenuSel ctermfg=black ctermbg=white cterm=none
+hi PmenuSel ctermfg=black ctermbg=yellow cterm=none
 
 " Popup menu: scrollbar.
 hi PmenuSbar ctermfg=none ctermbg=white cterm=none
@@ -258,7 +258,7 @@ hi Whitespace ctermbg=none ctermfg=none cterm=none
 
 " Current quickfix item in the quickfix window. Combined with 
 " hl-CursorLine when the cursor is there.
-hi QuickFixLine ctermbg=none ctermfg=none cterm=none
+hi QuickFixLine ctermbg=yellow ctermfg=black cterm=none
 
 " :substitute replacement text highlighting
 hi Substitute ctermbg=none ctermfg=none cterm=none
