@@ -190,7 +190,7 @@ hi MoreMsg ctermfg=blue ctermbg=none cterm=none
 
 " The character under the cursor or just before it, if it is a paired bracket,
 " and its match.
-hi MatchParen ctermfg=none ctermbg=none cterm=none
+hi MatchParen ctermfg=black ctermbg=magenta cterm=none
 
 " Visual mode selection
 hi Visual ctermfg=none ctermbg=black cterm=none
