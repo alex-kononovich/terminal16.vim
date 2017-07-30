@@ -224,13 +224,13 @@ hi! link diffRemoved DiffDelete
 hi DiffText ctermfg=none ctermbg=black cterm=none
 
 " Popup menu: normal item.
-hi Pmenu ctermfg=none ctermbg=none cterm=none
+hi Pmenu ctermfg=none ctermbg=black cterm=none
 
 " Popup menu: selected item.
-hi PmenuSel ctermfg=none ctermbg=none cterm=none
+hi PmenuSel ctermfg=black ctermbg=white cterm=none
 
 " Popup menu: scrollbar.
-hi PmenuSbar ctermfg=none ctermbg=none cterm=none
+hi PmenuSbar ctermfg=none ctermbg=white cterm=none
 
 " Popup menu: Thumb of the scrollbar.
 hi PmenuThumb ctermfg=none ctermbg=none cterm=none
