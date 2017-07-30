@@ -267,7 +267,7 @@ hi Substitute ctermbg=none ctermfg=none cterm=none
 hi TermCursorNC ctermbg=none ctermfg=none cterm=none
 
 " cursor in a focused terminal
-hi TermCursor ctermbg=none ctermfg=none cterm=none
+hi TermCursor ctermbg=255 ctermfg=none cterm=none
 
 " filler lines (~) after the end of the buffer.
 hi! link EndOfBuffer NonText
