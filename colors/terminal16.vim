@@ -148,7 +148,7 @@ hi VertSplit ctermfg=black ctermbg=none cterm=none
 hi ColorColumn ctermfg=none ctermbg=none cterm=none
 
 " tab pages line, not active tab page label
-hi TabLine ctermfg=white ctermbg=black cterm=none
+hi TabLine ctermfg=darkgrey ctermbg=black cterm=none
 
 " tab pages line, where there are no labels
 hi TabLineFill ctermfg=darkgrey ctermbg=black cterm=none
@@ -167,7 +167,7 @@ hi Search ctermfg=none ctermbg=none cterm=underline
 hi IncSearch ctermfg=none ctermbg=none cterm=underline
 
 " status line of current window
-hi StatusLine ctermfg=none ctermbg=black cterm=none
+hi StatusLine ctermfg=white ctermbg=black cterm=none
 
 " status lines of not-current windows
 " Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line
@@ -238,7 +238,7 @@ hi PmenuThumb ctermfg=none ctermbg=none cterm=none
 
 " Word that is not recognized by the spellchecker.
 " Combined with the highlighting used otherwise.
-hi SpellBad ctermfg=none ctermbg=none cterm=none
+hi SpellBad ctermfg=red ctermbg=none cterm=undercurl
 
 " Word that should start with a capital.
 " Combined with the highlighting used otherwise.
@@ -259,7 +259,7 @@ hi Whitespace ctermbg=none ctermfg=none cterm=none
 
 " Current quickfix item in the quickfix window. Combined with 
 " hl-CursorLine when the cursor is there.
-hi QuickFixLine ctermbg=yellow ctermfg=black cterm=none
+hi QuickFixLine ctermbg=none ctermfg=yellow cterm=none
 
 " :substitute replacement text highlighting
 hi Substitute ctermbg=none ctermfg=none cterm=none
@@ -280,14 +280,12 @@ hi CursorIM ctermbg=none ctermfg=none cterm=none
 " text (see 'conceallevel')
 hi Conceal ctermbg=none ctermfg=none cterm=none
 
-
 hi StringDelimiter ctermfg=none ctermbg=none cterm=none
 
 " CODE
 
 " any comment
 hi Comment ctermfg=darkgrey ctermbg=none cterm=none
-
 
 " any constant
 hi Constant ctermfg=cyan ctermbg=none cterm=none
