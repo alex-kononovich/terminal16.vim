@@ -389,3 +389,15 @@ hi Error ctermfg=red ctermbg=none cterm=none
 " anything that needs extra attention; mostly the
 hi Todo ctermfg=black ctermbg=yellow cterm=none
 
+" NEOMAKE
+
+hi! link NeomakeErrorSign Normal
+hi! link NeomakeWarningSign Normal
+hi! link NeomakeMessageSign Normal
+hi! link NeomakeInfoSign Normal
+
+hi! link NeomakeError SpellBad
+hi! link NeomakeWarning SpellBad
+hi! link NeomakeInfo SpellBad
+hi! link NeomakeMessage SpellBad
+
