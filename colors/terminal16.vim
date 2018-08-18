@@ -1,14 +1,10 @@
 " 16 colors scheme that uses your terminal colors
 
 set background=dark
-
 highlight clear
-
 if exists('syntax_on')
-  syntax clear
   syntax reset
 endif
-
 let g:colors_name='terminal16'
 
 " TESTING
