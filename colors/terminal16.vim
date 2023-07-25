@@ -299,3 +299,6 @@ hi Error ctermfg=red ctermbg=none cterm=none
 
 " anything that needs extra attention; mostly the
 hi Todo ctermfg=black ctermbg=yellow cterm=none
+
+" trailing whitespace
+hi ExtraWhitespace ctermfg=red ctermbg=red
