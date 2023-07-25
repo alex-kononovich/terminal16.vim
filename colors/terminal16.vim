@@ -97,7 +97,7 @@ hi Visual ctermfg=none ctermbg=black cterm=none
 
 " '@' at the end of the window, characters from 'showbreak' and other characters
 " that do not really exist in the text (e.g., ">" displayed when a double-wide
-" character doesn't 
+" character doesn't
 hi NonText ctermfg=black ctermbg=none cterm=none
 
 " error messages on the command line
@@ -156,7 +156,7 @@ hi SpellRare ctermfg=none ctermbg=none cterm=none
 " "nbsp", "space", "tab" and "trail" in 'listchars'
 hi Whitespace ctermbg=none ctermfg=none cterm=none
 
-" Current quickfix item in the quickfix window. Combined with 
+" Current quickfix item in the quickfix window. Combined with
 " hl-CursorLine when the cursor is there.
 hi QuickFixLine ctermbg=none ctermfg=yellow cterm=none
 
@@ -172,7 +172,7 @@ hi TermCursor ctermbg=255 ctermfg=none cterm=none
 " filler lines (~) after the end of the buffer.
 hi! link EndOfBuffer NonText
 
-" CursorIM like Cursor, but used when in IME mode 
+" CursorIM like Cursor, but used when in IME mode
 hi CursorIM ctermbg=none ctermfg=none cterm=none
 
 " placeholder characters substituted for concealed
