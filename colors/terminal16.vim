@@ -41,7 +41,7 @@ hi SignColumn ctermfg=none ctermbg=none cterm=none
 hi Folded ctermfg=darkgrey ctermbg=none cterm=none
 
 " the column separating vertically split windows
-hi VertSplit ctermfg=black ctermbg=none cterm=none
+hi WinSeparator ctermfg=black ctermbg=none cterm=none
 
 " used for the columns set with 'colorcolumn'
 hi ColorColumn ctermfg=none ctermbg=none cterm=none
